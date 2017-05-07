@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- iojs
+deploy:
+  provider: heroku
+  api_key:
+    secure: OvYRVPefSl25cLJ8n/s5qUamrGplr3HzkLIlaOvgArkCUsy8s7B9cXBu3pLhwCRefW/QHOrMvjO/7rc34jU0Zzj51UMbBVqZfBfOTIKmDkNfgiizGvKw2KUfezbqzkujOCGwag+eLk9OYTX6N2RfRawrSZdzHsKs93bB9rXe8OqGxvO9noDa6dWXiElr5P0EPKBFeSDPDIHQRNPO46r06F0SozbzpOoNECO4/yHQdU2aTeuK90NUgeJsV2E7Achcyu2/xauu4NqVOqod24Rhq0/zAxgL6vW/OJbxX9wzIVsqqo3Fw4n7mwb6Weq7644IGtZIkNwO11O+E21XsGwm2TjzZM8DFhVGp8BqKZDuGpPSjoq6TdBohlgZjcaOruzf6Eiacbb4PkJdYABmZt/ouS2OWqkSgg78WCm56ZvY50XUXp/WwKWmfVZd674GOoAGdgyL7vTvE4PDjliDnj2j8IiD7v3r6hzNwiCM9q55nxbL6uCghwcZsBULR17IdHgSW9UZM0XwuHjR98MAgxZjgcVkCq9vC+j+prywEOxlc/4MdrvSqLxKRkjl6Gg6dJK7tFGPr7arsW0Dyt+Q/s0rby403HNcxHKEl6o15+9kl/ebL0so5qZDTqWqnJAWejmC3DXBABv7+iMl1HsoB7zuow8e7MBAcKokdAND+J41D6g=
+  app: cse112-1
+  on:
+    repo: kkuo42/team2
