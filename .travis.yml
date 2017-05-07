@@ -5,6 +5,6 @@ deploy:
   provider: heroku
   api_key:
     secure: j9JWCWBloCsoNT36aUcI46xtbIoJVTwxu9xiodYKYblw0EBlsYqK+jtCXEIEclL6Q5cLXWH3975s5zG2/hmO4BPp+Vi1hCdkPNuksXp3QYM7QEPsUISc/dqKt5qqIUlruekjWvlfDe7pXue6ubZq85sUwG3OGP3qRZcGVpEVAXlPZU9S5cbl3Cw5aE/KiK2014qWZ5TM3YjLyXzY6m6k+8lFOwpUpMMyzFdbQzfLDjjThI9iIsmmUqpTpIl+xnVVMIzCUyJWQua5kO9lAXxOz5IWpwXRf2kMXzZtCsbXKBXBTrv2JvOcSBrDGXIitbjkNae0CdVUI5WE9D1PE4dbvQMi1DzT+JSdd/yKmgtQnvTsnjDw/L+Ca9x2q4dTWzYfGeYKuFX7v9AlC5qF/IILzwe0zuG3mYQdzjtIJxZV8vKA7f92+8kLU53IT9HyKWJEHpYTUbvqSEGANvOrQ1rxAfql+F7eq8O2sW8WiXitN1G7idMbEt4cRAVHsxX0VhA3pXQPqifl1c7lRQOsL93AxabmaB764Brg0izxQXVsEcL7my3z9/R/jE4pKQWVuGXOs+qQdCjxDZYgQdFIdRC2pKHMtNVHg9jzr4qik/FTJvyayshH6eQORuOjBq3aVpgCsYFOMImqyBoaBAdd++h3YoGB2F6sDv8tzgAWgovbS+U=
-  app: 1-Fubar-App
+  app: cse112-1
   on:
     repo: kkuo42/1-Fubar-App
