@@ -19,8 +19,8 @@ First Run
 
 Push to testing environment
 ----------------------------
-1. Simply push your experimental changes to the ``develop`` branch.
-2. Changes may be view on the [staging site](http://fubar-staging.herokuapp.com/).
+1. Simply push your experimental changes to the ``staging`` branch.
+2. Changes may be viewed here: https://cse112-1-staging.herokuapp.com/
 
 Logging in as Peter
 ----------------------------
@@ -29,7 +29,7 @@ In order to login as peter, use the following credentials
 	username: peter@enque.com
 	password: peter
 	
-The live app can be found [here](http://team-fubar.herokuapp.com/).
+The live app can be found here: https://cse112-1.herokuapp.com/
 	
 Slack Integration can be found here
 
