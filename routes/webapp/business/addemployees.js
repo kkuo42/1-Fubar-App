@@ -103,7 +103,7 @@ exports.post = function(req,res,next){
             // need to create a randomly generated bCrypted Password
         });
         // can't use variables in an object's field. Instead, create the field outside, then put it as the text argument in sendgrid
-        var emailContent = 'Hello ' + name + ', \n\n' + 'Please click on the following link, or paste this into your browser to complete sign-up the process: ' + 'http://team-fubar.herokuapp.com/employeeregister?token=' + token;
+        var emailContent = 'Hello ' + name + ', \n\n' + 'Please click on the following link, or paste this into your browser to complete sign-up the process: ' + 'http://cse112-1.herokuapp.com/employeeregister?token=' + token;
 
         sendgrid.send({
             to: inputEmail,
