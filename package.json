@@ -1,13 +1,15 @@
 {
-  "name": "robobetty",
-  "version": "0.6.0",
-  "description": "apiDoc for Robobetty",
-  "title": "Robobetty API",
+  "name": "cse112-1-fubar",
+  "version": "1.0.0",
+  "description": "Server for CSE112-1-Fubar",
+  "title": "CSE112-1-Fubar",
   "private": true,
   "scripts": {
     "build": "gulp",
     "start": "node ./bin/www",
-    "test": "echo 'done'"
+    "test": "npm run test-unit && npm run test-e2e",
+    "test-unit": "echo 'done'",
+    "test-e2e": "mocha tests/e2etest.js"
   },
   "dependencies": {
     "async": "^0.9.0",
@@ -30,6 +32,7 @@
     "gulp-util": "^3.0.4",
     "hjs": "~0.0.6",
     "imgur": "^0.1.7",
+    "mocha": "^3.3.0",
     "mongodb": "*",
     "monk": "*",
     "morgan": "~1.5.1",
@@ -57,14 +60,11 @@
     "gulp-jshint": "^1.9.2",
     "gulp-load-plugins": "^0.8.1",
     "gulp-minify-css": "^0.5.1",
+    "gulp-mocha": "^4.3.1",
     "gulp-nodemon": "^1.0.5",
     "gulp-open": "^0.3.2",
     "gulp-shell": "^0.3.0",
-    "jasmine-core": "^2.2.0",
     "jshint-stylish": "^1.0.1",
-    "karma": "^0.12.31",
-    "karma-chrome-launcher": "^0.1.7",
-    "karma-jasmine": "^0.3.5",
     "mongobackup": "^0.1.8",
     "yargs": "^3.4.4"
   },
