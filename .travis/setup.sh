@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $TRAVIS_BRANCH == 'master' ]; then
+if $TRAVIS_BRANCH == 'master'; then
   echo "setting production"
   export NODE_ENV=production
 else
