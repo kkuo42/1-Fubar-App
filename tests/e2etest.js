@@ -8,8 +8,8 @@ var test = require('selenium-webdriver/testing');
 var assert = require('assert');
 
 // can't run end2end tests on something that isn't deployed yet
-console.log(process.env.NODE_ENV)
-if(process.env.NODE_ENV === 'staging') {
+console.log(process.env.TRAVIS_BRANCH)
+if(process.env.TRAVIS_BRANCH === 'staging') {
     console.log("E2E testing skipped, staging CI");
     return;
 }
@@ -21,7 +21,7 @@ var site;
 
 test.before(function() {
     this.timeout(mochaTimeOut);
-    if(process.env.NODE_ENV === 'production') {
+    if(process.env.TRAVIS_BRANCH === 'production') {
         console.log("USING SAUCELABS");
         driver = new webdriver.Builder().
             withCapabilities({
