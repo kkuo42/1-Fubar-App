@@ -10,12 +10,12 @@ var assert = require('assert');
 const mochaTimeOut = 30000;
 
 var driver; 
-
+console.log(process.env.NODE_ENV);
 test.before(function() {
     this.timeout(mochaTimeOut);
     console.log(process.env.NODE_ENV);
-    if(process.env.NODE_ENV === 'production') {
-        console.log("IN PRODUCTION MODE");
+    if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+        console.log("USING SAUCELABS");
         driver = new webdriver.Builder().
             withCapabilities({
                 'browserName': 'chrome',
