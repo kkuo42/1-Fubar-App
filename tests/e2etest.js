@@ -9,6 +9,7 @@ var assert = require('assert');
 
 // can't run end2end tests on something that isn't deployed yet
 if(process.env.NODE_ENV === 'staging') {
+    console.log("E2E testing skipped, staging CI");
     return;
 }
 
