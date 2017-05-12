@@ -40,6 +40,7 @@
     "plivo-node": "^0.2.5",
     "plugin": "^0.3.3",
     "request": "^2.69.0",
+    "selenium-webdriver": "^3.4.0",
     "sendgrid": "^1.6.0",
     "serve-favicon": "^2.2.1",
     "socket.io": "^1.4.5",
