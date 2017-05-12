@@ -7,14 +7,19 @@ var webdriver = require('selenium-webdriver'),
 var test = require('selenium-webdriver/testing');
 var assert = require('assert');
 
+// can't run end2end tests on something that isn't deployed yet
+if(process.env.NODE_ENV === 'staging') {
+    return;
+}
+
 const mochaTimeOut = 30000;
 
-var driver; 
-console.log(process.env.NODE_ENV);
+var driver;
+var site;
+
 test.before(function() {
     this.timeout(mochaTimeOut);
-    console.log(process.env.NODE_ENV);
-    if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+    if(process.env.NODE_ENV === 'production') {
         console.log("USING SAUCELABS");
         driver = new webdriver.Builder().
             withCapabilities({
@@ -27,9 +32,11 @@ test.before(function() {
             usingServer("http://" + username + ":" + accessKey +
                         "@ondemand.saucelabs.com:80/wd/hub").
             build();
+        site = 'https://cse112-1-staging.herokuapp.com/';
     }
     else {
         driver = new webdriver.Builder().forBrowser('chrome').build();
+        site = 'http://localhost:3000/';
     }
 })
 
@@ -47,7 +54,7 @@ test.describe("Searching webdriver online", function() {
 test.describe("Loading landing page", function() {
     test.it("Loads landing page", function() {
         this.timeout(mochaTimeOut);
-        driver.get('http://localhost:3000/');
+        driver.get(site);
         driver.findElement(By.id('top-page'))
         assert.equal(true, true);
     });
