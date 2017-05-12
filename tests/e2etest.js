@@ -1,17 +1,44 @@
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
-    until = webdriver.until;
+    until = webdriver.until
+    username = "kkuo42"
+    accessKey = "c03f2778-8165-49a9-9274-bb27dc98e284";
 
 var test = require('selenium-webdriver/testing');
 var assert = require('assert');
 
+// can't run end2end tests on something that isn't deployed yet
+if(process.env.TRAVIS_BRANCH === 'staging') {
+    console.log("E2E testing skipped, staging CI");
+    return;
+}
+
 const mochaTimeOut = 30000;
 
-var driver; 
+var driver;
+var site;
 
 test.before(function() {
     this.timeout(mochaTimeOut);
-    driver = new webdriver.Builder().forBrowser('chrome').build();
+    if(process.env.TRAVIS_BRANCH === 'master') {
+        console.log("E2E testing on staging branch, master CI");
+        driver = new webdriver.Builder().
+            withCapabilities({
+                'browserName': 'chrome',
+                'platform': 'Windows XP',
+                'version': '43.0',
+                'username': username,
+                'accessKey': accessKey
+            }).
+            usingServer("http://" + username + ":" + accessKey +
+                        "@ondemand.saucelabs.com:80/wd/hub").
+            build();
+        site = 'https://cse112-1-staging.herokuapp.com/';
+    }
+    else {
+        driver = new webdriver.Builder().forBrowser('chrome').build();
+        site = 'http://localhost:3000/';
+    }
 })
 
 test.describe("Searching webdriver online", function() {
@@ -28,7 +55,7 @@ test.describe("Searching webdriver online", function() {
 test.describe("Loading landing page", function() {
     test.it("Loads landing page", function() {
         this.timeout(mochaTimeOut);
-        driver.get('http://localhost:3000/');
+        driver.get(site);
         driver.findElement(By.id('top-page'))
         assert.equal(true, true);
     });
