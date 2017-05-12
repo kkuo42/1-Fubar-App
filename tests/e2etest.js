@@ -13,7 +13,9 @@ var driver;
 
 test.before(function() {
     this.timeout(mochaTimeOut);
+    console.log(process.env.NODE_ENV);
     if(process.env.NODE_ENV === 'production') {
+        console.log("IN PRODUCTION MODE");
         driver = new webdriver.Builder().
             withCapabilities({
                 'browserName': 'chrome',
