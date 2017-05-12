@@ -13,7 +13,7 @@ var driver;
 
 test.before(function() {
     this.timeout(mochaTimeOut);
-    if(process.env.NODE_ENC === 'production') {
+    if(process.env.NODE_ENV === 'production') {
         driver = new webdriver.Builder().
             withCapabilities({
                 'browserName': 'chrome',
