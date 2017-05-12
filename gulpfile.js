@@ -7,30 +7,22 @@ var child_process = require('child_process');
 //var uglify = require('gulp-uglify');
 //var rename = require('gulp-rename');
 var server = require('gulp-express');
-var Server = require('karma').Server;
 var browserSync = require('browser-sync');
 var mongobackup = require('mongobackup');
+var jshint = require('gulp-jshint');
 
 var plugins= require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'gulp.*', 'check-*', 
-	'jasmine-*', 'mongobackup', 'karma', 'karma-*', 'yargs'],
+	'mongobackup', 'yargs'],
 	scope: ['dependencies', 'devDependencies'],
 	lazy: false
-
 });
-
-
-//console.log(plugins);
+var mocha = require('gulp-mocha');
 //var argv = require('yargs').argv;
-
 //var nodemon = require('gulp-nodemon');
-//var jshint = require('gulp-jshint');
-
 //var checkPages = require('check-pages');
-
 //var mongobackup = require('mongobackup');
 //var shell = require('gulp-shell');
-
 
 var exec = require('child_process').exec;
 
@@ -50,24 +42,19 @@ function execute(command, callback) {
 
 //// begin of additional plugins
 
-/**
- * Run test once and exit
- */
-gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js'
-  }, done).start();
-});
-
 gulp.task('clean', function () {
   return gulp.src('build', {read: false})
     .pipe(plugins.clean());
 });
 
 gulp.task('lint', function() {
-  return gulp.src('./*.js')
-    .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter('jshint-stylish'));
+  return gulp.src([
+      './*.js',
+      './routes/webapp/business/*.js',
+      './routes/webapp/checkin/*.js'
+    ])
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('vendor', function() {
@@ -80,7 +67,6 @@ gulp.task('vendor', function() {
     .on('error', plugins.util.log);
 });
 
-//gulp.task('build', ['vendor'], function() {
 gulp.task('build-concat', ['vendor'], function() {
   return gulp.src('./public/stylesheets/*.css')
 	.pipe(plugins.minifyCss({keepBreaks:false}))
@@ -136,6 +122,7 @@ gulp.task('nodemon', ['lint'], function (cb) {
     });
 });
 
+// NOT USED ANYMORE BECAUSE WE USE MLAB. USE IF LOCAL MONGO INSTANCE
 /*gulp.task('mongostart', function() {
     child_process.exec('mongod --dbpath db', function(err, stdout, stderr) {
         if(err) {
@@ -157,7 +144,7 @@ gulp.task('mongoend', function() {
     });
 });*/
 
-gulp.task('browser-sync', ['nodemon'/*, 'mongostart', 'watch-check'*/], function () {
+gulp.task('browser-sync', ['nodemon'/*, 'mongostart' */], function () {
 
   // for more browser-sync config options: http://www.browsersync.io/docs/options/
   browserSync.init({
@@ -200,17 +187,6 @@ gulp.task('mongorestore', function() {
 
 
 gulp.task('default', ['browser-sync']);
-
-var karma = require('karma').server;
-/**
- * Run test once and exit
- */
-gulp.task('test', function (done) {
-  karma.start({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done);
-});
 
 // prerequisites - must have heroku command line tools installed
 //               - must be authenticated with heroku
@@ -285,12 +261,6 @@ gulp.task('checkLocal', ['lint'], function(callback) {
 
   plugins.checkPages(console, options, callback);
 });
-
-//gulp.task('watch-check', function() {
-//    gulp.watch('public/**/*.*', ['lint']);
-//    gulp.watch('views/**/*.*', ['lint']);
-//    gulp.watch('public/javascripts/*.js', ['lint']);
-//});
 
 // check pages on development
 gulp.task('checkDev', ['lint'], function(callback) {
