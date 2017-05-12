@@ -1,6 +1,8 @@
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
-    until = webdriver.until;
+    until = webdriver.until
+    username = "kkuo42"
+    accessKey = "c03f2778-8165-49a9-9274-bb27dc98e284";
 
 var test = require('selenium-webdriver/testing');
 var assert = require('assert');
@@ -11,7 +13,22 @@ var driver;
 
 test.before(function() {
     this.timeout(mochaTimeOut);
-    driver = new webdriver.Builder().forBrowser('chrome').build();
+    if(process.env.NODE_ENC === 'production') {
+        driver = new webdriver.Builder().
+            withCapabilities({
+                'browserName': 'chrome',
+                'platform': 'Windows XP',
+                'version': '43.0',
+                'username': username,
+                'accessKey': accessKey
+            }).
+            usingServer("http://" + username + ":" + accessKey +
+                        "@ondemand.saucelabs.com:80/wd/hub").
+            build();
+    }
+    else {
+        driver = new webdriver.Builder().forBrowser('chrome').build();
+    }
 })
 
 test.describe("Searching webdriver online", function() {
