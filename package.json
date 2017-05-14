@@ -52,7 +52,6 @@
   "devDependencies": {
     "browser-sync": "^2.1.1",
     "check-pages": "^0.7.1",
-    "codeclimate-test-reporter": "^0.4.1",
     "gulp": "^3.8.11",
     "gulp-apidoc": "^0.1.2",
     "gulp-connect": "^2.2.0",

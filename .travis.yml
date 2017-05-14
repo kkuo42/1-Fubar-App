@@ -1,9 +1,9 @@
 language: node_js
 node_js:
   - 7
-script:
-  - npm test
-  - CODECLIMATE_REPO_TOKEN=66b0c17d664f1186d7e2fe75d31f67e24b5623721ecdd898ed658ebaff42504f node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
+after_success:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info
 deploy:
   - provider: heroku
     api_key:
@@ -19,3 +19,6 @@ deploy:
     on:
       repo: kkuo42/1-Fubar-App
       branch: staging
+addons:
+  code_climate:
+    repo_token: 66b0c17d664f1186d7e2fe75d31f67e24b5623721ecdd898ed658ebaff42504f
