@@ -3,3 +3,4 @@ db/*
 .idea/*
 config.codekit
 .DS_Store
+.nyc_output
