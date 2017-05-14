@@ -8,7 +8,7 @@
     "build": "gulp",
     "start": "node ./bin/www",
     "test": "node_modules/.bin/nyc --reporter=lcov --reporter=text npm run test-unit && npm run test-e2e",
-    "test-unit": "echo 'done'",
+    "test-unit": "mocha tests/unittest.js",
     "test-e2e": "mocha tests/e2etest.js"
   },
   "dependencies": {
