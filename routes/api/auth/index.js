@@ -135,3 +135,6 @@ router.post('/api/auth', function (req, res, next) {
 });
 
 module.exports = router;
+
+// Export for testing
+module.exports.decodeAuthString = decodeAuthString
