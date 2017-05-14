@@ -42,10 +42,6 @@ function execute(command, callback) {
 
 //// begin of additional plugins
 
-gulp.task('coverage', function () {
-  execute("CODECLIMATE_REPO_TOKEN=66b0c17d664f1186d7e2fe75d31f67e24b5623721ecdd898ed658ebaff42504f node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info", function (br) { console.log(br) });
-});
-
 gulp.task('clean', function () {
   return gulp.src('build', {read: false})
     .pipe(plugins.clean());
