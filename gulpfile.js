@@ -42,6 +42,12 @@ function execute(command, callback) {
 
 //// begin of additional plugins
 
+gulp.task('test', function() {
+  return execute('npm test', function(stuff) {
+    console.log(stuff);
+  });
+}
+
 gulp.task('clean', function () {
   return gulp.src('build', {read: false})
     .pipe(plugins.clean());
@@ -183,7 +189,6 @@ gulp.task('mongorestore', function() {
     path : './dumps/mongo'
   });
 });
-
 
 
 gulp.task('default', ['browser-sync']);
