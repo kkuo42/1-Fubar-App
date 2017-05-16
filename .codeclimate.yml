@@ -31,3 +31,4 @@ exclude_paths:
 - dist/
 - tests/
 - client/
+- public/plugins/
