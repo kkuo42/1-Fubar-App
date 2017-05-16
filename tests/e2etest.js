@@ -43,26 +43,6 @@ test.before(function() {
     }
 })
 
-test.describe("Searching webdriver online", function() {
-    test.it("Searches webdriver online", function() {
-        this.timeout(mochaTimeOut);
-        driver.get('http://www.google.com/ncr');
-        driver.findElement(By.name('q')).sendKeys('webdriver');
-        driver.findElement(By.name('btnG')).click();
-        driver.wait(until.titleIs('webdriver - Google Search'), 5000);
-        assert.equal(true, true);
-    });
-});
-
-test.describe("Loading landing page", function() {
-    test.it("Loads landing page", function() {
-        this.timeout(mochaTimeOut);
-        driver.get(site)
-        driver.findElement(By.id('top-page'));
-        assert.equal(true, true);
-    });
-});
-
 test.describe("Landing Page", function() {
    test.it("Checks landing home", function() {
        this.timeout(mochaTimeOut);
