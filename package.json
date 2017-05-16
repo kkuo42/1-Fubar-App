@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.1.1",
+    "chai": "^3.5.0",
     "check-pages": "^0.7.1",
     "codeclimate-test-reporter": "^0.4.1",
     "gulp": "^3.8.11",
