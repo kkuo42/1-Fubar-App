@@ -46,7 +46,7 @@ gulp.task('test', function() {
   return execute('npm test', function(stuff) {
     console.log(stuff);
   });
-}
+});
 
 gulp.task('clean', function () {
   return gulp.src('build', {read: false})
@@ -56,8 +56,8 @@ gulp.task('clean', function () {
 gulp.task('lint', function() {
   return gulp.src([
       './*.js',
-      './routes/webapp/business/*.js',
-      './routes/webapp/checkin/*.js'
+      './routes/**/*.js',
+      './lib/*.js'
     ])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
