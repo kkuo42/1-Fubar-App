@@ -1,4 +1,7 @@
-# web-app
+# Team 1 Enque
+[![Code Climate](https://codeclimate.com/github/kkuo42/1-Fubar-App/badges/gpa.svg)](https://codeclimate.com/github/kkuo42/1-Fubar-App)
+[![Test Coverage](https://codeclimate.com/github/kkuo42/1-Fubar-App/badges/coverage.svg)](https://codeclimate.com/github/kkuo42/1-Fubar-App/coverage)
+[![Issue Count](https://codeclimate.com/github/kkuo42/1-Fubar-App/badges/issue_count.svg)](https://codeclimate.com/github/kkuo42/1-Fubar-App)
 
 First Run
 ----------------------------
