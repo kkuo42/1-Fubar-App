@@ -1,3 +1,5 @@
+require('chai').should();
+
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until
@@ -55,11 +57,46 @@ test.describe("Searching webdriver online", function() {
 test.describe("Loading landing page", function() {
     test.it("Loads landing page", function() {
         this.timeout(mochaTimeOut);
-        driver.get(site);
-        driver.findElement(By.id('top-page'))
+        driver.get(site)
+        driver.findElement(By.id('top-page'));
         assert.equal(true, true);
     });
 });
+
+test.describe("Landing Page", function() {
+   test.it("Checks landing home", function() {
+       this.timeout(mochaTimeOut);
+       driver.get(site)
+           .then(() => driver.getTitle())
+           .then(title => title.should.equal('Landing Page'))
+   });
+
+});
+
+test.describe("Log In Page", function() {
+    test.it("Log in page loads", function() {
+       this.timeout(mochaTimeOut);
+       driver.get(site)
+            .then(() => driver.findElement(By.linkText('LOG IN')).click())
+            .then(() => driver.getCurrentUrl())
+            .then(URL => URL.should.equal(site + 'login'))
+    });
+});
+
+test.describe("Register Page", function() {
+   test.it("Checks Register Page Loads", function() {
+      this.timeout(mochaTimeOut);
+      driver.get(site)
+          .then(() => driver.findElement(By.linkText('LOG IN')).click())
+          .then(() => driver.getCurrentUrl())
+          .then(URL => URL.should.equal(site +'login'))
+          .then(() => driver.findElement(By.linkText('REGISTER')).click())
+          .then(() => driver.getCurrentUrl())
+          .then(URL => URL.should.equal(site + 'register'))
+   });
+});
+
+
 
 test.afterEach(function() {
     driver.manage().deleteAllCookies();
