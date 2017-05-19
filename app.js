@@ -16,22 +16,10 @@ var monk = require('monk');
 
 var app = express();
 app.io = require('socket.io')();
-/*var hbs = exphbs({
-    helpers: {
-        ifThird: function( index, options ) {
-            if( index%3 == 2 ){
-                return options.fn(this);
-            } else {
-                return options.inverse(this);
-            }
-        }
-    }
-});*/
 
 global.__base = __dirname + '/';
 
 var mongoURI = process.env.MONGOLAB_URI || 'mongodb://admin:cse112@ds133261.mlab.com:33261/cse112-1-db';
-//var mongoURI = process.env.MONGOLAB_URI || 'mongodb://admin:admin@ds061335.mongolab.com:61335/heroku_w9bxpzpc';
 console.log('Connecting to DB: ' + mongoURI);
 var db = monk(mongoURI);
 
@@ -42,18 +30,17 @@ var employee = db.get('employees');
 //passport functions to Serialize and Deserialize users
 
 passport.serializeUser(function(user, done) {
-        done(null, user._id);
-    });
+    done(null, user._id);
+});
 
-// used to deserialize the user
 passport.deserializeUser(function (id, done) {
-
     employee.find({_id: id}, function (err, user){
-            if(err){ done(err);}
-
-            if(user){
-                done(null,user);
-            }
+        if(err) { 
+            done(err);
+        }
+        if(user) {
+            done(null,user);
+        }
     });
 });
 
@@ -84,24 +71,22 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(favicon(path.join(__dirname,'public', 'images', 'favicon.ico')));
 
 app.use(multer({
-  dest: __dirname + '/public/images/uploads/',
-  onFileUploadStart: function (file) {
-    console.log(file.mimetype);
-    if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg') {
-      return false;
-    } else {
-      console.log(file.fieldname + ' is starting ...');
+    dest: __dirname + '/public/images/uploads/',
+    onFileUploadStart: function (file) {
+        console.log(file.mimetype);
+        if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg') {
+            return false;
+        } else {
+            console.log(file.fieldname + ' is starting ...');
+        }
+    },
+    onFileUploadData: function (file, data) {
+        console.log(data.length + ' of ' + file.fieldname + ' arrived');
+    },
+    onFileUploadComplete: function (file) {
+        console.log(file.fieldname + ' uploaded to  ' + file.path);
     }
-  },
-  onFileUploadData: function (file, data) {
-    console.log(data.length + ' of ' + file.fieldname + ' arrived');
-  },
-  onFileUploadComplete: function (file) {
-    console.log(file.fieldname + ' uploaded to  ' + file.path);
-  }
 }));
-
-
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -142,7 +127,6 @@ app.use(function(req, res, next) {
 // Set Webapp Routes
 app.use('/office', require('./routes/webapp/checkin'));
 app.use('/', businessRoutes);
-
 
 
 // Set Mobile Routes
