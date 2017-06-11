@@ -25,6 +25,6 @@ Push to testing environment
 1. Simply push your experimental changes to the ``staging`` branch.
 2. Changes may be viewed here: https://cse112-1-staging.herokuapp.com/
 
-Live website
+Live Website
 ----------------------------
 The live app can be found here: https://cse112-1.herokuapp.com/
